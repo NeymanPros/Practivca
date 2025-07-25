@@ -93,7 +93,7 @@
                             <!-- Первая колонка -->
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="parameter-group">
-                                    <h5 class="mb-3"><i class="fas fa-chart-line me-2"></i>Основные параметры</h5>
+                                    <h5 class="mb-3"><i class="fas fa-chart-line me-2"></i>Параметры 1</h5>
                                     
                                     <div class="mb-2">
                                         <label for="param1" class="form-label">Средняя цена</label>
@@ -130,7 +130,7 @@
                             <!-- Вторая колонка -->
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="parameter-group">
-                                    <h5 class="mb-3"><i class="fas fa-cogs me-2"></i>Операционные данные</h5>
+                                    <h5 class="mb-3"><i class="fas fa-cogs me-2"></i>Параметры 2</h5>
                                     
                                     <div class="mb-2">
                                         <label for="param7" class="form-label">Упущенные заказы</label>
@@ -167,7 +167,7 @@
                             <!-- Третья колонка -->
                             <div class="col-lg-4 col-md-12 col-sm-12">
                                 <div class="parameter-group">
-                                    <h5 class="mb-3"><i class="fas fa-star me-2"></i>Рейтинги и отзывы</h5>
+                                    <h5 class="mb-3"><i class="fas fa-star me-2"></i>Параметры 3</h5>
                                     
                                     <div class="mb-2">
                                         <label for="param13" class="form-label">Суммарное количество изображений</label>
@@ -249,12 +249,10 @@
             const resultCard = document.getElementById('resultCard');
             const errorCard = document.getElementById('errorCard');
             
-            // Показываем загрузку
             loadingSpan.style.display = 'inline';
             defaultSpan.style.display = 'none';
             submitBtn.disabled = true;
             
-            // Скрываем предыдущие результаты
             resultCard.style.display = 'none';
             errorCard.style.display = 'none';
             
@@ -268,10 +266,8 @@
                 const data = await response.json();
                 
                 if (response.ok) {
-                    // Показываем результат
                     document.getElementById('predictionValue').textContent = data.prediction.toFixed(4);
                     
-                    // Если есть вероятности (для классификации)
                     if (data.probabilities) {
                         const probText = data.probabilities.map((prob, idx) => 
                             `Класс ${idx}: ${(prob * 100).toFixed(1)}%`
@@ -285,19 +281,16 @@
                     resultCard.style.display = 'block';
                     resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    // Показываем ошибку
                     document.getElementById('errorMessage').textContent = data.error;
                     errorCard.style.display = 'block';
                     errorCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
             } catch (error) {
-                // Показываем ошибку сети
                 document.getElementById('errorMessage').textContent = 
                     'Ошибка сети: ' + error.message;
                 errorCard.style.display = 'block';
                 errorCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } finally {
-                // Возвращаем кнопку в исходное состояние
                 loadingSpan.style.display = 'none';
                 defaultSpan.style.display = 'inline';
                 submitBtn.disabled = false;
