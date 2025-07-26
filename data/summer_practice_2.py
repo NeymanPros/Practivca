@@ -9,8 +9,6 @@ import csv
 from datetime import datetime, timedelta
 
 
-
-
 if not all([AUTH_TOKEN, COMPANY_ID, USER_ID]):
     raise ValueError("Необходимо задать все переменные окружения в .env файле (AUTH_TOKEN, COMPANY_ID, USER_ID)")
 
@@ -31,8 +29,6 @@ DATE_TO = datetime.now().strftime('%Y-%m-%d')
 DATE_FROM = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
 
 
-
-
 def get_product_details(product_id: int) -> dict:
     """Получает детальную информацию по одному товару."""
     url = "https://wildbox.ru/api/wb_dynamic/products/"
@@ -44,7 +40,6 @@ def get_product_details(product_id: int) -> dict:
         results = response.json().get('results', [])
         return results[0] if results else {}
     except requests.exceptions.RequestException: return {}
-
 
 
 INPUT_CSV = '/content/articls.csv'     
@@ -141,4 +136,3 @@ merged_df = united_df.merge(
 )
 
 merged_df
-     
