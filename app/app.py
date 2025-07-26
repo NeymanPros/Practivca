@@ -12,7 +12,7 @@ def load_model():
     """Загружает модель при запуске приложения"""
     global model
     try:
-        model = joblib.load('/home/alexe/AAA/sales_model.pkl')
+        model = joblib.load('./sales_model.pkl')
         print("Модель успешно загружена!")
     except FileNotFoundError:
         print("Ошибка: файл sales_model.pkl не найден!")
