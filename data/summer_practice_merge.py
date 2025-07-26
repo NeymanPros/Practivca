@@ -10,7 +10,6 @@ brands = brands.rename(columns={
     'name': 'brand_name'
 })
 
-
 brands_unique = brands.drop_duplicates(subset=['brand_id'], keep='first')
 
 merged = products.merge(
@@ -42,7 +41,6 @@ print(f"После объединения: {merged_rating.shape[0]} строк")
 merged_rating.to_csv('merged_with_rating.csv', index=False)
 
 
-
 seller_rating = pd.read_csv('/content/seller_rating.csv')
 seller_rating = seller_rating.rename(columns={
     'id': 'seller_id',
@@ -50,7 +48,6 @@ seller_rating = seller_rating.rename(columns={
     'reviews': 'seller_reviews',
     'name': 'seller_name'
 })
-
 
 seller_unique = seller_rating.drop_duplicates(subset=['seller_id'], keep='first')
 
@@ -65,4 +62,3 @@ print(f"Исходная таблица: {merged_rating.shape[0]} строк")
 print(f"После удаления дубликатов в брендах: {seller_unique.shape[0]} строк")
 print(f"После объединения: {final_merged.shape[0]} строк")
 final_merged.to_csv('final_merged.csv', index=False)
-     
