@@ -1,5 +1,3 @@
-
-
 import pandas as pd
 
 products = pd.read_csv('/content/big_no_R.csv')
